@@ -1,7 +1,11 @@
 import {createReducer} from "@ngrx/store";
 
-const initialCounter = 0;
+const initialState = 0;
 
-export const counterReducer = createReducer({
-  counter: initialCounter
-})
+// export const counterReducer = createReducer({
+//   counter: initialState
+// })
+
+export function counterReducer(state = initialState) {
+  return state
+}
