@@ -12,10 +12,7 @@ export class CounterEffects {
     switchMap(() => {
       const loadedCounter = localStorage.getItem('counter');
 
-      if (!!loadedCounter) {
-        return of(setAction({value: +loadedCounter}))
-      }
-      return of(setAction({value: 0}))
+      return of(setAction({value: !!loadedCounter ? +loadedCounter : 0}))
     })
   ))
 
