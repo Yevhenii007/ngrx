@@ -1,4 +1,4 @@
-import {Action, createAction, on, props} from "@ngrx/store";
+import {Action, createAction, props} from "@ngrx/store";
 
 export const incrementAction = createAction(
   '[Counter] Increment',

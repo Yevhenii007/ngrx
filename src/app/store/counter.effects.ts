@@ -1,20 +1,23 @@
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {decrementAction, incrementAction} from "./counter.actions";
-import {tap} from "rxjs";
+import {tap, withLatestFrom} from "rxjs";
 import {Injectable} from "@angular/core";
+import {Store} from "@ngrx/store";
+import {selectCount} from "./counter.selectors";
 
 @Injectable()
 export class CounterEffects {
   public saveCount = createEffect(() => this._actions$.pipe(
     ofType(incrementAction, decrementAction),
-    tap((action) => {
+    withLatestFrom(this._store.select(selectCount)),
+    tap(([action, counter]) => {
       console.log(action)
-      localStorage.setItem('counter', action.value.toString())
+      localStorage.setItem('counter', counter.toString())
     })
   // ! This effect does not dispatch a new action once it's done. So we set 'dispatch' to false (Because default is true);
   ), { dispatch: false })
 
-  constructor(private _actions$: Actions) {}
+  constructor(private _actions$: Actions, private _store: Store<{ counter: number }>) {}
 }
 
 // // In older ngrx versions
