@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import { CounterOutputComponent } from './counter-output/counter-output.component';
 import { CounterControlsComponent } from './counter-controls/counter-controls.component';
 import {Store} from "@ngrx/store";
-import {initAction, setAction} from "./store/counter.actions";
+import {initCounterAction, setCounterAction} from "./store/counter.actions";
 
 @Component({
   selector: 'app-root',
@@ -18,6 +18,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._store.dispatch(initAction())
+    this._store.dispatch(initCounterAction())
   }
 }

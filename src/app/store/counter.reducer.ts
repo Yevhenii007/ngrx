@@ -1,8 +1,8 @@
 import {Action, createReducer, on} from "@ngrx/store";
 import {
-  decrementAction,
+  decrementCounterAction,
   // CounterActions,
-  incrementAction, setAction,
+  incrementCounterAction, setCounterAction,
   // INCREMENT_KEY, IncrementAction
 } from "./counter.actions";
 
@@ -11,9 +11,9 @@ const initialState = 0;
 // ! Reducer state changing functions must always be synchronous.
 export const counterReducer = createReducer(
   initialState,
-  on(incrementAction, (state, action) => state + action.value), // ! always should return new value, not mutated
-  on(decrementAction, (state, action) => state - action.value),
-  on(setAction, (state, action) => action.value)
+  on(incrementCounterAction, (state, action) => state + action.value), // ! always should return new value, not mutated
+  on(decrementCounterAction, (state, action) => state - action.value),
+  on(setCounterAction, (state, action) => action.value)
 )
 
 // export function counterReducer(state = initialState, action: CounterActions | Action) {
